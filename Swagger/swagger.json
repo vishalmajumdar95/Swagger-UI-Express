@@ -1,0 +1,336 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": " E-commerce",
+        "description": "official documentation of REST-API",
+        "version": "2.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "tags": [{
+            "name": "Users",
+            "description": "Everything about Users",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "Themes",
+            "description": "Operation for Jiffy themes"
+        },
+        {
+            "name": "Departments",
+            "description": "Operation for Jiffy themes"
+        },
+        {
+            "name": "Attribuites",
+            "description": "Operation for Jiffy themes"
+        },
+        {
+            "name": "Products",
+            "description": "Operation for Jiffy themes"
+        },
+        {
+            "name": "Orders",
+            "description": "Operation for Jiffy themes"
+        }
+
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "api_key",
+            "in": "header"
+        }
+    },
+    "paths": {
+        "/hello": {
+            "get": {
+                "summary": "This is testing swagger",
+                "tags": [
+                    "Users"
+                ],
+                "description": "hello swagger.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Array of object",
+                        "examples": {
+                            "application/json": {
+                                "message": "hello brother"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "return an error object",
+                        "examples": {
+                            "application/json": {
+                                "code": "USR_02",
+                                "message": "The field example is empty.",
+                                "field": "example",
+                                "status": "500"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "parameters": [],
+            "get": {
+                "summary": "Get all Users",
+                "operationId": "getuser",
+                "description": "get all users",
+                "tags": [
+                    "Users"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array of object",
+                        "examples": {
+                            "application/json": {
+                                "content": {
+                                    "users": [{
+                                            "id": 1,
+                                            "name": "Vishal",
+                                            "email": "Vishal@gamil.com",
+                                            "password": "Vishal"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "name": "Ranjan",
+                                            "email": "Ranjan2@gmail.com",
+                                            "password": "Ranjan32"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "return an error object",
+                        "examples": {
+                            "application/json": {
+                                "code": "USR_02",
+                                "message": "The field example is empty.",
+                                "field": "example",
+                                "status": "500"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "parameters": [{
+                "name": "id",
+                "required": true,
+                "in": "query",
+                "type": "string",
+                "description": "id"
+            }],
+            "get": {
+                "operationId": "routeWithId",
+                "summary": "Get User with Id",
+                "description": "get user with id",
+                "tags": [
+                    "Users"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array of object",
+                        "examples": {
+                            "application/json": {
+                                "users": {
+                                    "id": 1,
+                                    "name": "raju",
+                                    "email": "raju@gamil.com",
+                                    "password": "dsgnkbfd"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "return an error object",
+                        "examples": {
+                            "application/json": {
+                                "code": "USR_02",
+                                "message": "The field example is empty.",
+                                "field": "example",
+                                "status": "500"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/post": {
+            "parameters": [{
+                    "name": "name",
+                    "required": true,
+                    "in": "query",
+                    "type": "string",
+                    "description": "NAME"
+                },
+                {
+                    "name": "email",
+                    "required": true,
+                    "in": "query",
+                    "type": "string",
+                    "description": "Email"
+                },
+                {
+                    "name": "password",
+                    "required": true,
+                    "in": "query",
+                    "type": "string",
+                    "description": "Password"
+                }
+            ],
+            "post": {
+                "operationId": "post user",
+                "summary": "Post Userdata",
+                "description": "",
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array of object",
+                        "examples": {
+                            "application/json": {
+                                "message": "User created"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "return an error object",
+                        "examples": {
+                            "application/json": {
+                                "code": "USR_02",
+                                "message": "The field example is empty.",
+                                "field": "example",
+                                "status": "500"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/update/{id}": {
+            "parameters": [{
+                    "name": "id",
+                    "required": true,
+                    "in": "path",
+                    "type": "string",
+                    "description": "id"
+                },
+                {
+                    "name": "name",
+                    "required": true,
+                    "in": "query",
+                    "type": "string",
+                    "description": "name"
+                },
+                {
+                    "name": "email",
+                    "required": true,
+                    "in": "query",
+                    "type": "string",
+                    "description": "email"
+                },
+                {
+                    "name": "password",
+                    "required": true,
+                    "in": "query",
+                    "type": "string",
+                    "description": "password"
+                }
+            ],
+            "put": {
+                "operationId": "postuser",
+                "summary": "Update User by ID",
+                "description": "",
+                "tags": [
+                    "Users"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array of object",
+                        "examples": {
+                            "application/json": {
+                                "message": "User updated!"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "return an error object",
+                        "examples": {
+                            "application/json": {
+                                "code": "USR_02",
+                                "message": "The field example is empty.",
+                                "field": "example",
+                                "status": "500"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/delete/{id}": {
+            "parameters": [{
+                "name": "id",
+                "required": true,
+                "in": "path",
+                "type": "string",
+                "description": "id"
+            }],
+            "delete": {
+                "operationId": "deleteuser",
+                "summary": "Delete User by ID",
+                "description": "",
+                "tags": [
+                    "Users"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array of object",
+                        "examples": {
+                            "application/json": {
+                                "message": "User deleted !"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "return an error object",
+                        "examples": {
+                            "application/json": {
+                                "code": "USR_02",
+                                "message": "The field example is empty.",
+                                "field": "example",
+                                "status": "500"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
